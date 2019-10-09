@@ -1,0 +1,71 @@
+from qt import *
+import sys
+from PyQt5.QtWidgets import QApplication, QWidget, QInputDialog, QLineEdit, QFileDialog
+from PyQt5 import QtWidgets
+from summarizer import *
+import requests
+from scan import *
+from ocr import *
+pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files (x86)\\Tesseract-OCR\\tesseract.exe'
+import pytesseract
+from summarizer2 import *
+from speech_to_text import *
+from pdf import *
+
+class FirstApp(Ui_MainWindow):
+    def select_files(directory_location=None):
+        qtapp = QApplication([directory_location])
+        qtwgt = QtWidgets.QWidget()
+        filenames, _ = QFileDialog.getOpenFileNames(qtwgt)
+        return filenames
+
+    def __init__(self, window):
+        self.setupUi(window)
+        self.pushButton.clicked.connect(self.clickMe)
+        self.pushButton2.clicked.connect(self.clickMe2)
+        self.pushButton3.clicked.connect(self.clickMe3)
+        self.pushButton1.clicked.connect(self.click)
+        
+    
+    def click(self):
+        convert()
+        f = open.read
+    
+    def clickMe2(self):
+        text = pytesseract.image_to_string(Image.open('temp2.jpg'))
+        f = open('jenim1.txt',"w+")
+        f.write(text)
+        f = open('jenim.txt',"w+")
+        f.write(text)
+        f = open('jenim.txt',"r")
+        self.textEdit.setText(f.read())
+        summ2()
+        f = open('output_upload.txt',"r")
+        self.textEdit2.setText(f.read())
+
+    def clickMe(self):
+        filenames = self.select_files()
+        # scanning(filenames)
+        filename = filenames[0]
+        im = Image.open(filename)
+        rgb_im = im.convert('RGB')
+        rgb_im.save('temp2.jpg')
+    
+
+    def clickMe3(self):
+        inp = self.textEdit.toPlainText()
+        f= open("summ_file1.txt","w+")
+        f.write(inp)
+        f= open("summ_file.txt","w+")
+        f.write(inp)
+        temp = inp
+        summ()
+        f = open('out_copy.txt',"r")
+        self.textEdit2.setText(f.read())
+app =QtWidgets.QApplication(sys.argv)
+MainWindow = QtWidgets.QMainWindow()
+
+ui = FirstApp(MainWindow)
+
+MainWindow.show()
+app.exec_()

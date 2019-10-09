@@ -1,0 +1,45 @@
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import *
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName('Main Window')
+        MainWindow.resize(900, 900)
+        self.centralwidget = QtWidgets.QWidget(MainWindow) 
+        self.centralwidget.setObjectName('central object') 
+        self.pushButton = QtWidgets.QPushButton(self.centralwidget) 
+        self.pushButton.setGeometry(QtCore.QRect(50, 250, 155, 27)) #Push Button 1
+        self.pushButton.setObjectName('push button')
+        self.pushButton1 = QtWidgets.QPushButton(self.centralwidget) 
+        self.pushButton1.setGeometry(QtCore.QRect(350, 150, 155, 27)) #Push Button 1
+        self.pushButton1.setObjectName('push button')
+        self.textEdit = QtWidgets.QTextEdit(self.centralwidget)     #TEXT BOX
+        self.textEdit.setGeometry(QtCore.QRect(50, 350, 350, 400))
+        self.textEdit.setAcceptRichText(False)
+        self.textEdit.setPlaceholderText("Enter or paste the text... or OCR output")
+
+        self.textEdit2 = QtWidgets.QTextEdit(self.centralwidget)     #TEXT BOX 2
+        self.textEdit2.setGeometry(QtCore.QRect(500, 350, 350, 400))
+        self.textEdit2.setAcceptRichText(False)
+        self.textEdit2.setPlaceholderText("Summarised Text")
+        self.pushButton3 = QtWidgets.QPushButton(self.centralwidget) 
+        self.pushButton3.setGeometry(QtCore.QRect(100, 782, 250, 27)) #Push Button 3
+        self.pushButton3.setObjectName('push button')
+        self.pushButton2 = QtWidgets.QPushButton(self.centralwidget) 
+        self.pushButton2.setGeometry(QtCore.QRect(500, 250, 155, 27)) #Push Button 2
+        self.pushButton2.setObjectName('push button2')
+        MainWindow.setCentralWidget(self.centralwidget) 
+        self.statusbar = QtWidgets.QStatusBar(MainWindow) 
+        self.statusbar.setObjectName('status bar') 
+        self.label = QtWidgets.QLabel(self.centralwidget) # Label
+        self.label.setGeometry(QtCore.QRect(50, 100, 300, 50)) 
+        
+        MainWindow.setStatusBar(self.statusbar)
+        self. retranslateUi(MainWindow) 
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("Main Window", "My First App"))
+        self.pushButton.setText(_translate("Main Window", "Upload image"))
+        self.pushButton2.setText(_translate("Main Window", "Click to convert"))
+        self.pushButton3.setText(_translate("Main Window", "Click to summarize the text"))
+        self.pushButton1.setText(_translate("Main Window", "Speech"))
